@@ -1,0 +1,54 @@
+# Python e empacotamento
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Ambientes virtuais e configurações locais
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+.python-version
+
+# Ferramentas de qualidade e cobertura
+.pytest_cache/
+pytest-cache-files-*/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+junit.xml
+
+# Editores, SO e temporários
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+*.log
+
+# Documentos locais e resultados de OCR
+/data/
+/output/
+/outputs/
+/manual.pdf
+/*.pdf
+*_ocr.pdf
+*_OCR.pdf
+*.ocr.pdf
+*_processed.pdf

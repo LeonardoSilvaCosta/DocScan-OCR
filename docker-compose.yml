@@ -1,0 +1,19 @@
+name: scanlayer
+
+services:
+  scanlayer:
+    image: scanlayer:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_UID: "${APP_UID:-10001}"
+        APP_GID: "${APP_GID:-10001}"
+    user: appuser:appuser
+    working_dir: /data
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data
+        bind:
+          create_host_path: false
