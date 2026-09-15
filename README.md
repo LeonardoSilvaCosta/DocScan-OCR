@@ -266,6 +266,22 @@ Ubuntu). Para confirmar os idiomas disponíveis:
 tesseract --list-langs
 ```
 
+### Ghostscript 10.0.0 a 10.02.0 bloqueado pelo OCRmyPDF
+
+Essas versões podem corromper PDFs que já contêm texto ao usar
+`--skip-text`. A imagem atual exige Ghostscript 10.03.0 ou superior. Reconstrua
+a imagem para substituir uma versão antiga em cache:
+
+```powershell
+docker build --pull --no-cache --tag scanlayer:latest .
+```
+
+Com Docker Compose, use:
+
+```powershell
+docker compose build --pull --no-cache
+```
+
 ### Nenhum PDF foi encontrado
 
 Verifique se o caminho passado em `--input` existe e se a pasta contém arquivos

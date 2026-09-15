@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM debian:bookworm-slim
+# Trixie fornece Ghostscript >= 10.03.0. As versoes 10.0.0 a 10.02.0
+# podem corromper PDFs com texto existente quando --skip-text e usado.
+FROM debian:trixie-slim
 
 LABEL org.opencontainers.image.title="ScanLayer" \
       org.opencontainers.image.description="Camada OCR para PDFs escaneados com suporte a portugues"
@@ -44,7 +46,9 @@ USER appuser:appuser
 
 # Verificacoes executadas tambem como usuario non-root durante o build.
 RUN ocrmypdf --version \
-    && gs --version \
+    && GHOSTSCRIPT_VERSION="$(gs --version)" \
+    && dpkg --compare-versions "${GHOSTSCRIPT_VERSION}" ge 10.03.0 \
+    && printf 'Ghostscript %s\n' "${GHOSTSCRIPT_VERSION}" \
     && unpaper --version \
     && tesseract --list-langs | grep -Fx por \
     && test "$(locale charmap)" = "UTF-8" \
